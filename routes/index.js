@@ -14,6 +14,7 @@ var Article = require('../models/article');
  */
 
 router.get('/articles', (req, res, next) => {
+  //ET: Friendly reminder that in this context, .findAll() doesn't actually need to see parameters!
   Article.findAll({})
     .then(articles => res.status(200).json(articles))
     .catch(next);
@@ -42,6 +43,7 @@ router.post('/articles', (req, res, next) => {
 });
 
 router.put('/articles/:id', (req, res, next) => {
+  //ET: See my note in our Learning Team's Slack channel on how to achieve this with just one query to the database. Here you have two.
   Article.update({ title: req.body.title }, { where: { id: req.params.id } })
     .then(() => Article.findOne({ where: { id: req.params.id } }))
     .then(article => {
@@ -53,6 +55,7 @@ router.put('/articles/:id', (req, res, next) => {
     .catch(next);
 });
 
+//ET: This isn't necessary here, as you're provided an error handler in app.js. Let's discuss error handling later this week.
 router.use((err, req, res, next) => next(err));
 
 module.exports = router;

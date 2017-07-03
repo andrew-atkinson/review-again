@@ -9,6 +9,8 @@ var User = require('./user');
 
 //---------VVVV---------  your code below  ---------VVV----------
 
+//ET: Good work!
+
 var Article = db.define('article', {
   title: {
     type: Sequelize.STRING,
