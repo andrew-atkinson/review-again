@@ -48,7 +48,7 @@ describe('Articles Route:', function () {
      * **Extra Credit**: Consider using app.param to automatically load
      * in the Article whenever a param :id is detected
      */
-    xit('responds with an array via JSON', function () {
+    it('responds with an array via JSON', function () {
 
       return agent
       .get('/articles')
@@ -68,7 +68,7 @@ describe('Articles Route:', function () {
      * using the GET /articles route
      *
      */
-    xit('returns an article if there is one in the DB', function () {
+    it('returns an article if there is one in the DB', function () {
 
       var article = Article.build({
         title: 'Test Article',
@@ -95,7 +95,7 @@ describe('Articles Route:', function () {
      * using the GET /articles route
      *
      */
-    xit('returns another article if there is one in the DB', function () {
+    it('returns another article if there is one in the DB', function () {
 
       var article1 = Article.build({
         title: 'Test Article',
@@ -158,7 +158,7 @@ describe('Articles Route:', function () {
      * This is a proper GET /articles/ID request
      * where we search by the ID of the article created above
      */
-    xit('returns the JSON of the article based on the id', function () {
+    it('returns the JSON of the article based on the id', function () {
 
       return agent
       .get('/articles/' + coolArticle.id)
@@ -175,7 +175,7 @@ describe('Articles Route:', function () {
     /**
      * Here we pass in a bad ID to the URL, we should get a 404 error
      */
-    xit('returns a 404 error if the ID is not correct', function () {
+    it('returns a 404 error if the ID is not correct', function () {
 
       return agent
       .get('/articles/76142896')
@@ -200,7 +200,7 @@ describe('Articles Route:', function () {
      *  }
      *
      */
-    xit('creates a new article', function () {
+    it('creates a new article', function () {
 
       return agent
       .post('/articles')
@@ -218,7 +218,7 @@ describe('Articles Route:', function () {
     });
 
     // This one should fail with a 500 because we don't set the article.content
-    xit('does not create a new article without content', function () {
+    it('does not create a new article without content', function () {
 
       return agent
       .post('/articles')
@@ -230,7 +230,7 @@ describe('Articles Route:', function () {
     });
 
     // Check if the articles were actually saved to the database
-    xit('saves the article to the DB', function () {
+    it('saves the article to the DB', function () {
 
       return agent
       .post('/articles')
@@ -252,7 +252,7 @@ describe('Articles Route:', function () {
     });
 
     // Do not assume async operations (like db writes) will work; always check
-    xit('sends back JSON of the actual created article, not just the POSTed data', function () {
+    it('sends back JSON of the actual created article, not just the POSTed data', function () {
 
       return agent
       .post('/articles')
@@ -300,7 +300,7 @@ describe('Articles Route:', function () {
      *  }
      *
      **/
-    xit('updates an article', function () {
+    it('updates an article', function () {
 
       return agent
       .put('/articles/' + article.id)
@@ -317,7 +317,7 @@ describe('Articles Route:', function () {
 
     });
 
-    xit('saves updates to the DB', function () {
+    it('saves updates to the DB', function () {
 
       return agent
       .put('/articles/' + article.id)
@@ -334,7 +334,7 @@ describe('Articles Route:', function () {
 
     });
 
-    xit('gets 500 for invalid update', function () {
+    it('gets 500 for invalid update', function () {
 
       return agent
       .put('/articles/' + article.id)

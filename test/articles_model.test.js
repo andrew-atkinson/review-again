@@ -63,7 +63,7 @@ describe('The `Article` model', function () {
 
     });
 
-    xit('requires `content`', function () {
+    it('requires `content`', function () {
 
       article.content = null;
 
@@ -75,7 +75,7 @@ describe('The `Article` model', function () {
 
     });
 
-    xit('requires `title` (in a more strict way than for `content`)', function () {
+    it('requires `title` (in a more strict way than for `content`)', function () {
 
       article.title = '';
 
@@ -87,7 +87,7 @@ describe('The `Article` model', function () {
 
     });
 
-    xit('can handle long `content`', function() {
+    it('can handle long `content`', function() {
 
       var articleContent = 'WALL-E (stylized with an interpunct as WALL·E) is a 2008 American computer-animated science-fiction comedy film produced by Pixar Animation Studios and released by Walt Disney Pictures. Directed by Andrew Stanton, the story follows a robot named WALL-E, who is designed to clean up an abandoned, waste-covered Earth far in the future. He falls in love with another robot named EVE, who also has a programmed task, and follows her into outer space on an adventure that changes the destiny of both his kind and humanity. Both robots exhibit an appearance of free will and emotions similar to humans, which develop further as the film progresses.';
 
@@ -123,7 +123,7 @@ describe('The `Article` model', function () {
        *
        * http://sequelize.readthedocs.io/en/v3/docs/models-definition/#defining-as-part-of-the-model-options
        */
-      xit('evaluates to the first 23 characters of the `content` appended with "..."', function () {
+      it('evaluates to the first 23 characters of the `content` appended with "..."', function () {
 
         expect(article.snippet).to.equal('The South African cliff...');
 
@@ -136,7 +136,7 @@ describe('The `Article` model', function () {
       });
 
       // This is mostly to avoid a corner case seen during `Model.update`.
-      xit('returns empty string for missing `content`', function(){
+      it('returns empty string for missing `content`', function(){
 
         article.content = undefined;
 
@@ -156,7 +156,7 @@ describe('The `Article` model', function () {
        *
        * http://sequelize.readthedocs.io/en/v3/docs/models-definition/#expansion-of-models
        */
-      xit('truncates the `content`', function () {
+      it('truncates the `content`', function () {
 
         expect(article.content).to.equal(fullText);
 
@@ -165,7 +165,7 @@ describe('The `Article` model', function () {
 
       });
 
-      xit('accepts any length', function () {
+      it('accepts any length', function () {
 
         expect(article.content).to.equal(fullText);
 
@@ -175,7 +175,7 @@ describe('The `Article` model', function () {
 
       });
 
-      xit('does not save the instance once truncated', function() {
+      it('does not save the instance once truncated', function() {
 
         expect(article.content).to.equal(fullText);
 
@@ -211,7 +211,7 @@ describe('The `Article` model', function () {
         return Promise.all(articles);
       });
 
-      xit('finds one specific article by its `title`', function () {
+      it('finds one specific article by its `title`', function () {
 
         return Article.findByTitle('Migratory Birds')
         .then(function (foundArticle) {
@@ -234,7 +234,7 @@ describe('The `Article` model', function () {
      * http://sequelize.readthedocs.io/en/v3/docs/associations/#belongsto
      */
 
-    xit("belongs to a user, who is stored as the article's `author`", function() {
+    it("belongs to a user, who is stored as the article's `author`", function() {
 
       var creatingUser = User.create({ name: 'Alatar the Blue'});
       var creatingArticle = Article.create({
@@ -278,7 +278,7 @@ describe('The `Article` model', function () {
       });
     });
 
-    xit('is originally 0, even if not explicitly set', function() {
+    it('is originally 0, even if not explicitly set', function() {
 
       return Article.findOne({where: {title: 'Biological Immortality'}})
       .then(function(foundArticle) {
@@ -287,7 +287,7 @@ describe('The `Article` model', function () {
 
     });
 
-    xit('increments by 1 every time the article is updated', function() {
+    it('increments by 1 every time the article is updated', function() {
 
       return Article.findOne({where: {title: 'Biological Immortality'}})
       .then(function(foundArticle) {
@@ -329,7 +329,7 @@ describe('The `Article` model', function () {
      *
      * To activate this spec, change `xit` to `it`
      */
-    xit('is a custom getter', function () {
+    it('is a custom getter', function () {
 
       // tags should have a `defaultValue` that is an empty array.
       expect(Article.attributes.tags.defaultValue).to.deep.equal([]);
